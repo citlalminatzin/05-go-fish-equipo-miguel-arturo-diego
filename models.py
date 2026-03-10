@@ -2,29 +2,47 @@
 """
 models.py
 
-(Por favor modifica o elimina este comentario) 
-Es recomendable que escribas unas cuantas líneas
-explicando el propósito de cada código. Te propongo
-que utilices este archivo para que escribas las
-funciones principales que vayas a reutilizar en
-tus otras prácticas
+En este archivo se definen los modelos matemáticos y funciones auxiliares
+que se usarán en la práctica para predecir el peso de los peces a partir
+de sus dimensiones.
 """
 
-def modelo_geom(longitudes: list[float]) -> list[float]:
-    """
-    longitudes: list[float] ¿Qué significa longitudes? 
-    (Por favor elimina la pregunta y reemplazala con su respuesta)
-    ...
-    """
-    ... # Puedes eliminar esta línea
+import numpy as np
 
-def modelo_circ(longitudes: list[float]) -> list[float]:
+
+def modelo_geom(longitudes: list[float], K: float) -> list[float]:
     """
-    longitudes: list[float] ¿Qué significa longitudes? 
-    (Por favor elimina la pregunta y reemplazala con su respuesta)
-    ...
+    Predice el peso de un pez usando el modelo de similitud geométrica.
+
+    longitudes: lista con las longitudes de los peces
+    K: constante del modelo
+
+    Modelo:
+        W = K * l^3
     """
-    ... # Puedes eliminar esta línea
+
+    longitudes = np.array(longitudes)
+    return K * longitudes**3
+
+
+def modelo_circ(longitudes: list[float], circ: list[float], K: float) -> list[float]:
+    """
+    Predice el peso usando el modelo que incluye la circunferencia máxima.
+
+    longitudes: longitudes de los peces
+    circ: circunferencia máxima de cada pez
+    K: constante del modelo
+
+    Modelo aproximado:
+        W = K * l * C^2
+    """
+
+    longitudes = np.array(longitudes)
+    circ = np.array(circ)
+
+    return K * longitudes * circ**2
+
+
 
 def pearson(x:list[float], y: list[float]):
     """Calcula el coeficiente de pearson"""
