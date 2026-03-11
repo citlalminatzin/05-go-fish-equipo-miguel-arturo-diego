@@ -42,17 +42,46 @@ def modelo_circ(longitudes: list[float], circ: list[float], K: float) -> list[fl
 
     return K * longitudes * circ**2
 
+def pearson(x: list[float], y: list[float]):
+    """
+    Calcula el coeficiente de correlación de Pearson entre dos variables.
+    """
 
+    x = np.array(x)
+    y = np.array(y)
 
-def pearson(x:list[float], y: list[float]):
-    """Calcula el coeficiente de pearson"""
-    ...
+    x_mean = np.mean(x)
+    y_mean = np.mean(y)
 
-def calc_error(pred:list[float], truth: list[float]):
-    """Calcula el error entre una predicción y la verdad del dataset"""
+    num = np.sum((x - x_mean) * (y - y_mean))
+    den = np.sqrt(np.sum((x - x_mean)**2) * np.sum((y - y_mean)**2))
+
+    return num / den
+
+def calc_error(pred: list[float], truth: list[float]):
+    """
+    Calcula el error cuadrático medio entre las predicciones y los datos reales.
+    """
+
+    pred = np.array(pred)
+    truth = np.array(truth)
+
+    return np.mean((pred - truth)**2)
 
 def main():
-    ... # Puedes eliminar esta línea
+    """Pequeña prueba de las funciones"""
+
+    l = [30, 35, 40]
+    w_real = [1.0, 1.3, 1.9]
+
+    K = 0.00002
+
+    w_pred = modelo_geom(l, K)
+
+    print("Predicción:", w_pred)
+    print("Error:", calc_error(w_pred, w_real))
+
+
 
 if __name__ == "__main__":
     # Si necesitas hacer pruebas de tu función las puedes escribir acá
