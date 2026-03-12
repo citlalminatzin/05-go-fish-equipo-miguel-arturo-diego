@@ -50,11 +50,19 @@ def pearson(x: list[float], y: list[float]):
     x = np.array(x)
     y = np.array(y)
 
-    x_mean = np.mean(x)
-    y_mean = np.mean(y)
+    n = len(x)
 
-    num = np.sum((x - x_mean) * (y - y_mean))
-    den = np.sqrt(np.sum((x - x_mean)**2) * np.sum((y - y_mean)**2))
+    sum_x = np.sum(x)
+    sum_y = np.sum(y)
+
+    sum_xy = np.sum(x * y)
+
+    sum_x2 = np.sum(x**2)
+    sum_y2 = np.sum(y**2)
+
+    num = n * sum_xy - sum_x * sum_y
+
+    den = np.sqrt(n * sum_x2 - sum_x**2) * np.sqrt(n * sum_y2 - sum_y**2)
 
     return num / den
 
@@ -68,22 +76,5 @@ def calc_error(pred: list[float], truth: list[float]):
 
     return np.mean((pred - truth)**2)
 
-def main():
-    """Pequeña prueba de las funciones"""
 
-    l = [30, 35, 40]
-    w_real = [1.0, 1.3, 1.9]
-
-    K = 0.00002
-
-    w_pred = modelo_geom(l, K)
-
-    print("Predicción:", w_pred)
-    print("Error:", calc_error(w_pred, w_real))
-
-
-
-if __name__ == "__main__":
-    # Si necesitas hacer pruebas de tu función las puedes escribir acá
-    main()
 
