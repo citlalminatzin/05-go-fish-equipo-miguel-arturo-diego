@@ -1,17 +1,13 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/jw8MUQHd)
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=23051165)
-# Pon aquí el título de tu práctica o no, no soy tu papá
 
-(Si no eliminas esta línea lloro) Este es un archivo de ejemplo donde debes de colocar la respuesta a tus ejercicios, piénsalo como tu reporte de práctica. Aquí puedes introducir el problema y definir los términos que consideres apropiados de forma concisa.
+# Práctica 5: Modelos De Similitud Geométrica
+
+## Introducción: 
 
 ## Integrantes
 
-(Si no eliminas esta línea lloro) Escribe tus integrantes iniciando por apellido de forma alfabética
-
-- (Si no modificas esta línea lloro) Babilonia, Aureliano
-- (Si no modificas esta línea lloro) Buendía, Aureliano
-- (Si no modificas esta línea lloro) Segundo, Aureliano
-
+1. Domínguez León José Miguel
+2. Góngora Ramírez Arturo 
+3. Sánchez Ramírez Diego Alberto
 
 ## Uso e instalación
 
