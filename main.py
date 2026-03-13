@@ -83,7 +83,7 @@ def main():
     # EJERCICIO 1
     # =================================================
 
-    l, w, x = read_data("data/pescados.csv")
+    l, w, c, x = read_data("data/pescados.csv")
 
     print("Longitudes:", l)
     print("Pesos:", w)
