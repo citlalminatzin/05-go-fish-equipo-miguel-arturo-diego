@@ -11,14 +11,17 @@
 
 ## Uso e instalación
 
-(Si no eliminas esta línea lloro) Aquí escribe qué necesitas que instale para ejecutar tu código, por ejemplo:
+Para ejecutar este código correctamente, primero necesitas asegurarte de tener instaladas las librerías de Python: numpy, pandas, matplolib.
 
-- `matplotlib`
+La práctica está estructurada en tres archivos distintos para mantener un orden, los cuales son:
 
-(Si no eliminas esta línea lloro) Y dime cómo debería ejecutar tu código y en qué orden. Recuerda que antes de ejecutar tu código leeré tu `README.md`. Por ejemplo la manera en la que propongo que organizes tu código es
+- data.py: Se encarga exclusivamente de la lectura y el procesamiento inicial de tu dataset (por ejemplo, cargar la información del archivo CSV y convertirla en estructuras manejables).
 
-- `main.py`: Contiene el código para graficar cada uno de los tres ejercicios
-- `` (Por favor modifica esta línea)
+- models.py: Aquí viven las definiciones de los modelos predictivos (el geométrico y el basado en circunferencia), así como las herramientas para calcular el error y el coeficiente de correlación.
+
+- main.py: Aquí se definen las funciones para generar las gráficas (plots), se estructura la solución de los ejercicios paso a paso y se importan las herramientas necesarias de los otros dos archivos.
+
+El órden de ejecución es: data, models, main.
 
 ## Ejercicio 1
 
