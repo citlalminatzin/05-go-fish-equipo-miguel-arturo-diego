@@ -17,8 +17,8 @@ def read_data(path="data/pescados.csv"):
         Longitudes de los pescados.
     w : numpy.array
         Pesos de los pescados.
-    c : numpy.array (opcional)
-        Circunferencias máximas si la tabla las contiene.
+    c : numpy.array 
+        Circunferencias máximas.
     df : pandas.DataFrame
         Tabla con los datos.    
     """
@@ -26,20 +26,22 @@ def read_data(path="data/pescados.csv"):
 
     l = data[:,0]
     w = data[:,1]
+    c = data[:,2]
      # Crear DataFrame para visualizar como tabla
     df = pd.DataFrame({
         "Longitud": l,
-        "Peso": w
+        "Peso": w,
+        "Circunferencia": c
     })
 
 
-    return l, w, df
+    return l, w, c, df
 
 #Probabmos que se impriman los datos al ejecutar el script directamente
 if __name__ == "__main__":
-    l, w, df = read_data("data/pescados.csv")
+    l, w, c, df = read_data("/pescados.csv")
     #print("Longitudes:", l)
     #print("Pesos:", w)
+    #print("Circunferencias:, c")
     print("\nTabla de datos:\n")
     print(df)
-   
