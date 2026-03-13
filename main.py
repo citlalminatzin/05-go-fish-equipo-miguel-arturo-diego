@@ -3,20 +3,16 @@
 """
 Archivo principal de la práctica.
 
-Aquí se conectan los distintos módulos del proyecto:
-
-- data.py      -> lee el dataset de peces
-- models.py    -> contiene los modelos matemáticos y funciones de error
-
-En este archivo se resuelven los tres ejercicios de la práctica:
-1. Ajustar el modelo geométrico y calcular su error.
-2. Ajustar el modelo basado en circunferencia y calcular su error.
-3. Comparar ambos modelos y visualizar los resultados.
+Este programa utiliza los módulos data.py y models.py para analizar
+un dataset de peces. El objetivo es modelar el peso de los peces
+a partir de su longitud y comparar distintos modelos.
 """
 
+import numpy as np
 import matplotlib.pyplot as plt
+
 from data import read_data
-from models import calc_error, modelo_geom, modelo_circ
+from models import calc_error, modelo_geom, modelo_circ, pearson
 
 
 def make_plot(l, w_real, w_geom, w_circ):
@@ -24,75 +20,107 @@ def make_plot(l, w_real, w_geom, w_circ):
     Genera una gráfica comparando:
 
     - Datos reales del dataset
-    - Predicción del modelo geométrico
-    - Predicción del modelo basado en circunferencia
-
-    Parámetros
-    ----------
-    l : list[float]
-        Longitudes de los peces.
-    w_real : list[float]
-        Pesos reales del dataset.
-    w_geom : list[float]
-        Pesos predichos por el modelo geométrico.
-    w_circ : list[float]
-        Pesos predichos por el modelo de circunferencia.
+    - Predicciones del modelo geométrico
+    - Predicciones del modelo de circunferencia
     """
+
+    idx = np.argsort(l)
+
+    l_sorted = l[idx]
+    w_geom_sorted = w_geom[idx]
+    w_circ_sorted = w_circ[idx]
 
     plt.scatter(l, w_real, label="Datos reales")
 
-    plt.plot(l, w_geom, label="Modelo geométrico")
-    plt.plot(l, w_circ, label="Modelo circunferencia")
+    plt.plot(l_sorted, w_geom_sorted, label="Modelo geométrico")
+    plt.plot(l_sorted, w_circ_sorted, label="Modelo circunferencia")
 
     plt.xlabel("Longitud del pez")
     plt.ylabel("Peso del pez")
 
-    plt.legend()
     plt.title("Comparación de modelos de peso de peces")
+
+    plt.legend()
+    plt.show()
+
+
+def plot_data(l, w):
+    """Gráfica del ejercicio 1"""
+    plt.scatter(l, w)
+
+    plt.xlabel("Longitud del pez")
+    plt.ylabel("Peso del pez")
+
+    plt.title("Datos del campeonato de pesca")
 
     plt.show()
 
 
+def plot_geom(l, w, w_geom):
+    """Gráfica del ejercicio 2"""
+
+    idx = np.argsort(l)
+
+    l_sorted = l[idx]
+    w_geom_sorted = w_geom[idx]
+
+    plt.scatter(l, w, label="Datos reales")
+    plt.plot(l_sorted, w_geom_sorted, label="Modelo geométrico")
+
+    plt.xlabel("Longitud del pez")
+    plt.ylabel("Peso del pez")
+
+    plt.title("Ajuste del modelo W = K l³")
+
+    plt.legend()
+    plt.show()
+
+
 def main():
-    """
-    Función principal del programa.
 
-    Ejecuta los tres ejercicios de la práctica:
-    - Leer los datos
-    - Ajustar los modelos
-    - Calcular errores
-    - Comparar resultados
-    - Graficar
-    """
-
-    # -------------------------------------------------
+    # =================================================
     # EJERCICIO 1
-    # Leer los datos del archivo csv
-    # -------------------------------------------------
+    # =================================================
 
     l, w = read_data("data/pescados.csv")
 
     print("Longitudes:", l)
-    print("Pesos reales:", w)
+    print("Pesos:", w)
 
-    # -------------------------------------------------
+    r = pearson(l, w)
+
+    print("\nCoeficiente de Pearson:", r)
+
+    # gráfica de datos
+    plot_data(l, w)
+
+    # =================================================
     # EJERCICIO 2
-    # Aplicar los modelos y obtener predicciones
-    # -------------------------------------------------
+    # =================================================
 
-    w_geom = modelo_geom(l)
-    w_circ = modelo_circ(l)
+    # estimación de K
+    K = np.sum(w / (l**3)) / len(l)
+
+    print("\nConstante K estimada:", K)
+
+    w_geom = modelo_geom(l, K)
 
     print("\nPredicciones modelo geométrico:")
     print(w_geom)
 
+    # gráfica modelo geométrico
+    plot_geom(l, w, w_geom)
+
+    # =================================================
+    # EJERCICIO 3
+    # =================================================
+
+    circ = 0.4 * l
+
+    w_circ = modelo_circ(l, circ, K)
+
     print("\nPredicciones modelo circunferencia:")
     print(w_circ)
-
-    # -------------------------------------------------
-    # EJERCICIO 3
-    # Calcular errores y comparar modelos
-    # -------------------------------------------------
 
     error_geom = calc_error(w_geom, w)
     error_circ = calc_error(w_circ, w)
@@ -101,17 +129,13 @@ def main():
     print("Error modelo circunferencia:", error_circ)
 
     if error_geom < error_circ:
-        print("\nEl modelo geométrico ajusta mejor los datos.")
+        print("\nEl modelo geométrico describe mejor los datos.")
     else:
-        print("\nEl modelo basado en circunferencia ajusta mejor los datos.")
+        print("\nEl modelo basado en circunferencia describe mejor los datos.")
 
-    # -------------------------------------------------
-    # Graficar resultados
-    # -------------------------------------------------
-
+    # gráfica final comparando modelos
     make_plot(l, w, w_geom, w_circ)
 
 
 if __name__ == "__main__":
-    #main()
-    pass
+    main()
