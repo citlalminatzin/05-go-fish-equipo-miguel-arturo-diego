@@ -28,15 +28,17 @@ def make_plot(l, w_real, w_geom, w_circ):
     idx = np.argsort(l)
 
     l_sorted = l[idx]
+    c_sorted = c[idx]
     w_geom_sorted = w_geom[idx]
     w_circ_sorted = w_circ[idx]
 
     plt.scatter(l, w_real, label="Datos reales")
+    plt.scatter(c, w_real, label="Datos reales")
 
     plt.plot(l_sorted, w_geom_sorted, label="Modelo geométrico")
-    plt.plot(l_sorted, w_circ_sorted, label="Modelo circunferencia")
+    plt.plot(c_sorted, w_circ_sorted, label="Modelo circunferencia")
 
-    plt.xlabel("Longitud del pez")
+    plt.xlabel("Circunferencia / Longitud del pez")
     plt.ylabel("Peso del pez")
 
     plt.title("Comparación de modelos de peso de peces")
@@ -76,6 +78,23 @@ def plot_geom(l, w, w_geom):
     plt.legend()
     plt.show()
 
+def plot_circ(l, c, w_circ):
+    """Gráfica del ejercicio 3"""
+    idx = np.argsort(c)
+
+    c_sorted = c[idx]
+    w_circ_sorted = w_circ[idx]
+
+    plt.scatter(c, w, label="Datos reales")
+    plt.plot(c_sorted, w_circ_sorted, label="Modelo circunferencia")
+
+    plt.xlabel("Circunferencia del pez")
+    plt.ylabel("Peso del pez")
+
+    plt.title(f"Ajuste del modelo W = l c\u00B2")
+
+    plt.legend()
+    plt.show()
 
 def main():
 
@@ -83,7 +102,7 @@ def main():
     # EJERCICIO 1
     # =================================================
 
-    l, w, c, df = read_data("data/pescados.csv")
+    l, w, c, df = read_data("/pescados.csv")
 
     print("\nTabla de datos:\n")
     print(df)
@@ -95,7 +114,7 @@ def main():
 
     print("\nCoeficiente de Pearson (longitud-peso):", r1)
     print("Coeficiente de Pearson (longitud-circunferencia):", r2)
-
+ 
     # gráfica de datos
     plot_data(l, w)
 
@@ -103,7 +122,7 @@ def main():
     # EJERCICIO 2
     # =================================================
 
-    # estimación de K
+    # estimación de K, modelo geométrico
     K = np.sum(w / (l**3)) / len(l)
 
     print("\nConstante K estimada:", K)
@@ -120,12 +139,18 @@ def main():
     # EJERCICIO 3
     # =================================================
 
-    circ = 0.4 * l
+    # estimación de K, modelo cilíndrico
+    K = np.sum(w / (l*(c**2))) / len(c)
 
-    w_circ = modelo_circ(l, circ, K)
+    print("\nConstante K estimada:", K)
+
+    w_circ = modelo_circ(l, c, K)
 
     print("\nPredicciones modelo circunferencia:")
     print(w_circ)
+
+    # gráfica modelo cilíndrico
+    plot_circ(l, c, w_circ)
 
     error_geom = calc_error(w_geom, w)
     error_circ = calc_error(w_circ, w)
