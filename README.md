@@ -25,7 +25,13 @@ El órden de ejecución es: data, models, main.
 
 ## Ejercicio 1
 
-(Por favor modifica esta línea, lo suplico por piedad) Aquí puedes colocar la discusión del modelo, tu interpretación, el efecto de las condiciones iniciales. No tiene que ser perfecto, pero entre más casos puedas cubrir mejor
+Aunque este ejercicio no tiene una pregunta textual explícita, hacemos una cotejo del comportamiento de los datos con ayuda del coeficiente de Pearson:
+
+La función main() utiliza la función pearson(l, w) para calcular el Coeficiente de Correlación de Pearson entre la longitud y el peso, y pearson(l, c) para la longitud y la circunferencia.
+
+![Gráfica ejercicio 1, Datos del campeonato.](media/Datos_plot.png) 
+
+Los resultados de estas correlaciones son valores positivos cercanos a 1, lo cual indica una correlación lineal directa. Lo cual se intuye con la disposición de los datos en la gráfica. Además esto justifica estadísticamente la idea del campeonato: es posible predecir el peso usando dimensiones fáciles de medir con una cinta métrica.
 
 ## Ejercicio 2
 
