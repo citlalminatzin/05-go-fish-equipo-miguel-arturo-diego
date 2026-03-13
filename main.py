@@ -5,7 +5,8 @@ Archivo principal de la práctica.
 
 Este programa utiliza los módulos data.py y models.py para analizar
 un dataset de peces. El objetivo es modelar el peso de los peces
-a partir de su longitud y comparar distintos modelos.
+a partir de su longitud y/o circunferencia (sección transversal del
+pez) y comparar distintos modelos.
 """
 
 import numpy as np
