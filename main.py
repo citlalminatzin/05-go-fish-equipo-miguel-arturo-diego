@@ -83,14 +83,18 @@ def main():
     # EJERCICIO 1
     # =================================================
 
-    l, w, c, x = read_data("data/pescados.csv")
+    l, w, c, df = read_data("data/pescados.csv")
 
-    print("Longitudes:", l)
-    print("Pesos:", w)
+    print("\nTabla de datos:\n")
+    print(df)
 
-    r = pearson(l, w)
+    # coeficiente de correlación
 
-    print("\nCoeficiente de Pearson:", r)
+    r1 = pearson(l, w)
+    r2 = pearson(l, c)
+
+    print("\nCoeficiente de Pearson (longitud-peso):", r1)
+    print("Coeficiente de Pearson (longitud-circunferencia):", r2)
 
     # gráfica de datos
     plot_data(l, w)
