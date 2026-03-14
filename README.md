@@ -2,7 +2,54 @@
 # Práctica 5: Modelos De Similitud Geométrica
 
 ## Introducción: 
+En el campeonato de pesca de róbalo, el ganador se determina por el peso del pez capturado. Sin embargo, en muchas situaciones medir el peso directamente puede no ser posible o práctico, por lo que resulta útil contar con modelos matemáticos que permitan estimar el peso a partir de dimensiones fáciles de medir, como la longitud o la circunferencia del pez.
 
+Para construir estos modelos se parte de algunos supuestos simplificadores:
+1. Todos los peces pertenecen a la misma especie (róbalo).
+2. La densidad del pez es constante.
+3. Factores como edad, sexo o estación del año no afectan significativamente el peso.
+4. Los peces presentan similitud geométrica, es decir, su forma se mantiene aproximadamente proporcional a medida que crecen.
+Bajo estos supuestos, el peso de un pez puede relacionarse con su volumen mediante la densidad:
+
+$ W= \rho V$
+
+donde: $W$ es el pedo del pez,  $V$ volumen y $\rho$ la densidad, pero si suponemos que la densidad es constante 
+
+$W \propto V \Rightarrow  W \propto l^3$
+Tenmos la siguiente tabla de datos:
+
+| Longitud (cm) | Peso (kg) | Circunferencia (cm) |
+| -------------- | --------------- | --------------- |
+| 36.81 | 0.78 | 24.77 |
+| 31.77 | 0.47 | 21.29 |
+| 43.82 | 1.16 | 27.94 |
+| 36.82 | 0.74 | 24.77 |
+| 32.07 | 0.44 | 21.59 |
+| 45.07 | 1.40 | 31.75 |
+| 35.89 | 0.64 | 22.86 |
+Entonces, tenemos los siguienets modelos: 
+# Modelo de similitud geométrica 
+Si los peces crecen manteniendo proporciones similares, entonces todas sus dimensiones escalan con la **longitud característica**  $l$ Como el volumen de un cuerpo tridimensional escala con el cubo de su longitud, se obtiene el modelo:
+
+$W=Kl^3$
+
+donde $K$ constante de proporcionalidad que depende de la densidad y la forma del pez.
+
+Este modelo predice que peces más largos deberían pesar aproximadamente proporcional al cubo de su longitud.
+
+# Modelo basado en la circunferencia
+
+El modelo anterior ignora un aspecto importante: dos peces con la misma longitud pueden tener diferentes grosores. Para capturar esta variación se propone un segundo modelo.
+
+Se considera que el volumen del pez es proporcional a la longitud efectiva y al área promedio de su sección transversal: $V \propto l_e A_{prom}$ ahora suponemos que $l_e \propto l$ y que $A_{prom} \propto A_{max}$. Si la sección transversal es un círculo, se pude expresar en términos de la circunferencia como $A_{max} \propto C^2$, por lo que 
+
+$V \propto lC^2$ 
+
+eso nos da el moelo: 
+
+$W=Kl C^2$
+
+Cocn $C=$ circunferencia máxima del pez, $l$ longitud del pez y $K$ constante de proporcionalidad. Este modelo incorpora información sobre qué tan "gordo" es el pez, lo cual puede mejorar la estimación del peso
 ## Integrantes
 
 1. Domínguez León José Miguel
