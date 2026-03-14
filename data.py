@@ -38,10 +38,7 @@ def read_data(path="data/pescados.csv"):
     return l, w, c, df
 
 #Probabmos que se impriman los datos al ejecutar el script directamente
-if __name__ == "__main__":
-    l, w, c, df = read_data("data/pescados.csv")
-    #print("Longitudes:", l)
-    #print("Pesos:", w)
-    #print("Circunferencias:, c")
-    print("\nTabla de datos:\n")
-    print(df)
+#if __name__ == "__main__":
+    #l, w, c, df = read_data("data/pescados.csv")
+    #print("\nTabla de datos:\n")
+    #print(df)
