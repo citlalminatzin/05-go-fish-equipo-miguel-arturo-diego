@@ -11,7 +11,7 @@ Para construir estos modelos se parte de algunos supuestos simplificadores:
 4. Los peces presentan similitud geométrica, es decir, su forma se mantiene aproximadamente proporcional a medida que crecen.
 Bajo estos supuestos, el peso de un pez puede relacionarse con su volumen mediante la densidad:
 
-$ W= \rho V$
+$W= \rho V$
 
 donde: $W$ es el pedo del pez,  $V$ volumen y $\rho$ la densidad, pero si suponemos que la densidad es constante 
 
